@@ -13,14 +13,14 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
   display: "swap",
 });
-// Echoes the geometric, wide-tracked lettering of the Noxel logo — used for small labels only.
+// Echoes the geometric, wide-tracked lettering of the Noxel logo, used for small labels only.
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["500"], variable: "--font-montserrat", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — B2B Apparel Sourcing & Manufacturing`,
-    template: `%s — ${site.name}`,
+    default: `${site.name}, B2B Apparel Sourcing & Manufacturing`,
+    template: `%s, ${site.name}`,
   },
   description: site.description,
   applicationName: site.name,
@@ -28,14 +28,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: `${site.name} — Made for Brands. Built for Scale.`,
+    title: `${site.name}, Made for Brands. Built for Scale.`,
     description: site.description,
     url: "/",
-    images: [{ url: "/brand/og-image.jpg", width: 1200, height: 630, alt: "Noxel Apparel — Precision Built" }],
+    images: [{ url: "/brand/og-image.jpg", width: 1200, height: 630, alt: "Noxel Apparel, Precision Built" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Made for Brands. Built for Scale.`,
+    title: `${site.name}, Made for Brands. Built for Scale.`,
     description: site.description,
     images: ["/brand/og-image.jpg"],
   },

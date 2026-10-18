@@ -13,7 +13,7 @@ export const site = {
   // Verified: taken from the official logo lockup.
   tagline: "Precision Built",
   description:
-    "Noxel Apparel is a B2B apparel sourcing and manufacturing partner for brands and bulk buyers — working to your specification with clear communication from first inquiry to delivery coordination.",
+    "Noxel Apparel is a B2B apparel sourcing and manufacturing partner for new brands, established labels and bulk buyers. We offer personal consultancy from your first idea through development, production and delivery coordination.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 };
 
@@ -94,7 +94,7 @@ export type Category = {
   imageAlt: string;
 };
 
-/** Product categories — confirmed by the client. */
+/** Product categories, confirmed by the client. */
 export const categories: Category[] = [
   {
     slug: "casual-streetwear",
@@ -133,18 +133,18 @@ export const categories: Category[] = [
   },
 ];
 
-/** Working process. Describes approach only — no timeframes or guarantees. */
+/** Working process. Describes approach only, no timeframes or guarantees. */
 export const processSteps = [
   {
     title: "Inquiry",
-    body: "Tell us what you need — product, quantity, target market and timing. Every inquiry is read by a person, not a template.",
-    provide: "Product overview, quantity range, target timeline",
+    body: "Share your idea, even if you are still figuring out how to start a brand. As your manufacturers and personal consultants, we help you work out the next steps together.",
+    provide: "An idea or any details you already have; photos and specifications are optional",
     receive: "A direct reply and the questions we need answered to quote accurately",
   },
   {
-    title: "Requirements",
-    body: "We work through specifications with you — fabric, construction, sizing, trims, branding and packaging — until the brief is unambiguous.",
-    provide: "Tech pack, reference garment or written brief",
+    title: "Development & prototyping",
+    body: "We develop your idea from reference photos, hand sketches or a full technical pack (tech pack). Together we work through design mapping, custom pattern styling, fit adjustments, fabric and finishing.",
+    provide: "Your idea, with reference photos, sketches or a tech pack if available",
     receive: "A clarified specification and an itemised quotation",
   },
   {
@@ -177,7 +177,7 @@ export const processSteps = [
 export const principles = [
   {
     title: "Specification first",
-    body: "Every order starts from an agreed, written specification. Ambiguity is resolved before production — not discovered after it.",
+    body: "Every order starts from an agreed, written specification. Ambiguity is resolved before production, not discovered after it.",
   },
   {
     title: "One accountable contact",
@@ -196,10 +196,10 @@ export const principles = [
 /** Quote form options. */
 export const timelineOptions = [
   "As soon as possible",
-  "Within 1–3 months",
-  "Within 3–6 months",
+  "Within 1 to 3 months",
+  "Within 3 to 6 months",
   "6+ months",
-  "Flexible / exploring",
+  "Flexible or exploring",
 ] as const;
 
 /** Attachments: Resend supports them. Kept under typical serverless body limits. */

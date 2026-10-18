@@ -57,3 +57,7 @@ was **not** sent. There is no fake success state. Optional attachments (≤ 4 MB
 `public/images/` holds free Unsplash photos (Unsplash License) as stand-ins — credits in
 `photoCredits` in `site.ts`. They do **not** show Noxel facilities and should be replaced with Noxel's own
 photography before launch.
+
+### Starting with an idea
+
+Only name and email are required in the quote form. Company, country, category, product details, quantity, timeline, message and attachments are optional. Personal email addresses are accepted. Browser and API validation share the same rules in `src/lib/quote.ts`. Development and prototyping copy covers reference photos, sketches, tech packs, design mapping, custom patterns and fit adjustments, with personal consultancy for new founders.

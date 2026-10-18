@@ -13,7 +13,7 @@ export function Footer() {
       <Container className="pt-20 pb-10 lg:pt-28">
         <div className="grid gap-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           <div className="sm:col-span-2 lg:col-span-4">
-            <Link href="/" aria-label="Noxel Apparel — home" className="inline-block">
+            <Link href="/" aria-label="Noxel Apparel, home" className="inline-block">
               <LogoArtwork />
             </Link>
             <p className="mt-8 max-w-sm text-paper/60">{site.description}</p>
@@ -74,7 +74,7 @@ export function Footer() {
               <div className="mt-6 space-y-3">
                 <Pending inverse label="Contact details to be confirmed" />
                 <p className="max-w-xs text-sm text-paper/50">
-                  Use the quote form — it is the fastest way to reach the team.
+                  Use the quote form to share your idea or ask about an order.
                 </p>
               </div>
             )}

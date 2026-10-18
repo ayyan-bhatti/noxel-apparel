@@ -29,7 +29,7 @@ export function LogoArtwork({ withWordmark = true, className = "" }: Omit<Props,
 
 export function Logo({ className = "", withWordmark = true }: Props) {
   return (
-    <Link href="/" className={`inline-flex shrink-0 ${className}`} aria-label="Noxel Apparel — home">
+    <Link href="/" className={`inline-flex shrink-0 ${className}`} aria-label="Noxel Apparel, home">
       <LogoArtwork withWordmark={withWordmark} />
     </Link>
   );

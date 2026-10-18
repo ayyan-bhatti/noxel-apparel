@@ -127,7 +127,7 @@ export function QuoteForm() {
     return (
       <div ref={statusRef} tabIndex={-1} role="status" className="border border-ink bg-paper p-8 outline-none sm:p-12">
         <p className="text-label text-amber-deep">Request received</p>
-        <h3 className="text-headline mt-6 !text-[clamp(1.8rem,1.4rem+1.4vw,2.6rem)]">Thank you — your request was sent.</h3>
+        <h3 className="text-headline mt-6 !text-[clamp(1.8rem,1.4rem+1.4vw,2.6rem)]">Thank you. Your request was sent.</h3>
         <p className="mt-4 max-w-md text-slate">
           A member of the team will review your requirements and reply to the email address you provided.
         </p>
@@ -151,24 +151,26 @@ export function QuoteForm() {
           Request a quote
         </h2>
         <p id="form-note" className="text-sm text-slate">
-          Fields marked <span className="text-amber-deep">*</span> are required.
+          Only your name and email address are required.
         </p>
       </div>
+
+      <p className="mt-6 max-w-xl text-slate">Just have an idea? Tell us what you have in mind. Photos, sketches, tech packs and production details are optional. We can work through the rest together.</p>
 
       <div className="mt-8 grid gap-x-6 gap-y-7 sm:grid-cols-2">
         <Field id="name" label="Full name" required error={errors.name}>
           <input {...inputProps("name", values, set, blur, errors)} autoComplete="name" />
         </Field>
-        <Field id="company" label="Company" required error={errors.company}>
+        <Field id="company" label="Company" error={errors.company}>
           <input {...inputProps("company", values, set, blur, errors)} autoComplete="organization" />
         </Field>
-        <Field id="email" label="Business email" required error={errors.email}>
+        <Field id="email" label="Email address" required error={errors.email}>
           <input {...inputProps("email", values, set, blur, errors)} type="email" autoComplete="email" inputMode="email" />
         </Field>
-        <Field id="country" label="Country" required error={errors.country}>
+        <Field id="country" label="Country" error={errors.country}>
           <input {...inputProps("country", values, set, blur, errors)} autoComplete="country-name" />
         </Field>
-        <Field id="category" label="Product category" required error={errors.category} className="sm:col-span-2">
+        <Field id="category" label="Product category" error={errors.category} className="sm:col-span-2">
           <Select
             id="category"
             value={values.category}
@@ -179,13 +181,13 @@ export function QuoteForm() {
             onBlur={() => blur("category")}
           />
         </Field>
-        <Field id="product" label="Product requirements" required error={errors.product} className="sm:col-span-2" hint="Garment type, fabric, styles or colourways — whatever you know so far.">
+        <Field id="product" label="Product requirements" error={errors.product} className="sm:col-span-2" hint="Garment type, fabric, styles or colourways, whatever you know so far.">
           <input {...inputProps("product", values, set, blur, errors)} placeholder="e.g. Heavyweight hoodies, 3 colourways, private label" />
         </Field>
-        <Field id="quantity" label="Quantity" required error={errors.quantity} hint="Approximate total, or per style.">
+        <Field id="quantity" label="Quantity" error={errors.quantity} hint="Approximate total, or per style.">
           <input {...inputProps("quantity", values, set, blur, errors)} placeholder="e.g. 1,500 pcs" />
         </Field>
-        <Field id="timeline" label="Timeline" required error={errors.timeline}>
+        <Field id="timeline" label="Timeline" error={errors.timeline}>
           <Select
             id="timeline"
             value={values.timeline}
@@ -196,7 +198,7 @@ export function QuoteForm() {
             onBlur={() => blur("timeline")}
           />
         </Field>
-        <Field id="message" label="Message" error={errors.message} className="sm:col-span-2" hint="Anything else that helps us respond accurately — target price, destination, packaging, questions.">
+        <Field id="message" label="Message" error={errors.message} className="sm:col-span-2" hint="Tell us about your idea or ask for help getting your brand started.">
           <textarea
             id="message"
             name="message"
@@ -211,7 +213,7 @@ export function QuoteForm() {
           />
         </Field>
 
-        <Field id="attachment" label="Attachment" error={errors.attachment} className="sm:col-span-2" hint={`Optional — tech pack, reference images or spreadsheet. ${attachment.accept.join(" ")} · max ${attachment.maxBytes / 1024 / 1024} MB.`}>
+        <Field id="attachment" label="Attachment" error={errors.attachment} className="sm:col-span-2" hint={`Optional, tech pack, reference images or spreadsheet. ${attachment.accept.join(" ")} · max ${attachment.maxBytes / 1024 / 1024} MB.`}>
           <label
             htmlFor="attachment"
             className={`flex min-h-14 cursor-pointer items-center justify-between gap-4 border border-dashed px-4 py-3 transition-colors hover:border-ink focus-within:border-ink ${
@@ -239,7 +241,7 @@ export function QuoteForm() {
           </label>
         </Field>
 
-        {/* Honeypot — hidden from people and assistive tech */}
+        {/* Honeypot, hidden from people and assistive tech */}
         <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
           <label htmlFor="website">Website</label>
           <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
@@ -293,10 +295,9 @@ function Select({
         onBlur={onBlur}
         aria-invalid={invalid}
         aria-describedby={invalid ? `${id}-error` : undefined}
-        required
         className={`${inputClass(invalid)} appearance-none pr-10 ${value ? "" : "text-ink/45"}`}
       >
-        <option value="" disabled>
+        <option value="">
           {placeholder}
         </option>
         {options.map((o) => (
@@ -335,7 +336,7 @@ function inputProps(
     onBlur: () => blur(k),
     "aria-invalid": !!errors[k],
     "aria-describedby": errors[k] ? `${k}-error` : `${k}-hint`,
-    required: true,
+    required: k === "name" || k === "email",
     className: inputClass(!!errors[k]),
   };
 }

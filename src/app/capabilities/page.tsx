@@ -11,11 +11,12 @@ import { categories } from "@/config/site";
 export const metadata: Metadata = {
   title: "Products & Capabilities",
   description:
-    "Casual & streetwear, outerwear, activewear & intimates, bottoms, and workwear & uniforms — produced to your specification by Noxel Apparel for brands and bulk buyers.",
+    "Casual & streetwear, outerwear, activewear & intimates, bottoms, and workwear & uniforms, produced to your specification by Noxel Apparel for brands and bulk buyers.",
   alternates: { canonical: "/capabilities" },
 };
 
 const inputs = [
+  { title: "Reference photos or an idea", body: "Show us an inspiration photo or describe what you imagine. We help you find a starting point, even if you are new to building a brand." },
   { title: "Tech pack", body: "Full specification with measurements, materials, construction and artwork." },
   { title: "Reference garment", body: "An existing piece to match, adapt or improve on." },
   { title: "Sketch or brief", body: "A design direction we can develop into a workable specification with you." },
@@ -30,7 +31,7 @@ const options = [
   "Custom packaging",
   "Size range & grading",
   "Fabric development",
-  "Small-batch / trial runs",
+  "Small batch and trial runs",
 ];
 
 export default function CapabilitiesPage() {
@@ -52,7 +53,7 @@ export default function CapabilitiesPage() {
             eyebrow="Product categories"
             id="categories-title"
             title="The range."
-            intro="Have a product that isn't listed? Ask — we'll tell you honestly whether it's a fit."
+            intro="Have a product that isn't listed? Get in touch and we will let you know whether we can help."
           />
           <nav aria-label="Categories" className="mt-12 flex flex-wrap gap-2 lg:mt-16">
             {categories.map((c, i) => (
@@ -109,13 +110,14 @@ export default function CapabilitiesPage() {
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-5">
               <Reveal>
-                <Eyebrow index="02">What we work from</Eyebrow>
+                <Eyebrow index="02">Development &amp; prototyping</Eyebrow>
                 <h2 id="inputs-title" className="text-headline mt-6">
                   Start with whatever you have.
                 </h2>
                 <p className="text-lede mt-6 text-slate">
-                  The more complete your information, the faster and more accurate the quotation. But a complete tech
-                  pack isn&rsquo;t required to begin the conversation.
+                  We manufacture from reference photos, hand sketches and full technical packs (tech packs). Our development
+                  support includes design mapping, custom pattern styling and fit adjustments. As your manufacturers
+                  and personal consultants, we work through each decision with you, from your first idea to production.
                 </p>
               </Reveal>
               <Reveal delay={120} className="mt-12 hidden lg:block">

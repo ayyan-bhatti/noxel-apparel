@@ -114,7 +114,7 @@ export default function HowWeWorkPage() {
             </div>
             <div className="lg:col-span-8">
               <h2 id="note-title" className="text-title !text-[clamp(1.4rem,1.1rem+1vw,2rem)]">
-                We don&rsquo;t publish generic lead times — because there aren&rsquo;t any.
+                We don&rsquo;t publish generic lead times, because there aren&rsquo;t any.
               </h2>
               <p className="mt-4 max-w-2xl text-slate">
                 Timing depends on product, fabric, quantity, sampling rounds and shipping method. You&rsquo;ll receive a

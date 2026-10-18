@@ -8,13 +8,13 @@ import { contact, social } from "@/config/site";
 export const metadata: Metadata = {
   title: "Request a Quote",
   description:
-    "Request a quote from Noxel Apparel. Share your product requirements, quantity and timeline and we'll respond with clear next steps.",
+    "Request a quote from Noxel Apparel. Share an idea or request a quote. Photos, tech packs and production details are optional. Get personal guidance on developing your brand.",
   alternates: { canonical: "/contact" },
 };
 
 const expectations = [
-  "We review your requirements and come back with any questions needed to quote accurately.",
-  "You receive an itemised quotation with terms stated in writing.",
+  "We review your idea and help you work through any questions about starting or developing your brand.",
+  "Together we clarify the design and production details, then prepare an itemised quotation with written terms.",
   "Where applicable, we agree sampling before any bulk commitment.",
 ];
 
@@ -33,7 +33,7 @@ export default function ContactPage() {
       <section className="border-b border-line">
         <Container className="pt-14 pb-14 lg:pt-24 lg:pb-20">
           <div className="intro-fade">
-            <Eyebrow>Contact / Request a quote</Eyebrow>
+            <Eyebrow>Contact and quote requests</Eyebrow>
           </div>
           <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:gap-12">
             <h1 className="text-display lg:col-span-8">
@@ -42,8 +42,8 @@ export default function ContactPage() {
               </span>
             </h1>
             <p className="text-lede intro-fade self-end text-slate lg:col-span-4" style={{ ["--d" as string]: "240ms" }}>
-              Tell us what you need — product, quantity and timeline. The more detail you share, the more precise our
-              response.
+              Have a product in mind or just thinking about starting a brand? Share what you know. You do not need
+              photos, a tech pack or final production details to get in touch.
             </p>
           </div>
         </Container>

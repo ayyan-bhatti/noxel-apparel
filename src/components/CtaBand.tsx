@@ -9,8 +9,8 @@ type Props = {
 };
 
 export function CtaBand({
-  title = "Ready to talk specifics?",
-  body = "Share your product, quantity and timeline. We'll come back with the questions that matter and a clear next step — not a form letter.",
+  title = "Have an idea for your brand?",
+  body = "Whether you have a full tech pack or are just thinking about starting a brand, get in touch. We will be your manufacturers and personal consultants, working through development and production with you.",
 }: Props) {
   return (
     <section aria-labelledby="cta-title" className="grain relative overflow-hidden bg-ink text-paper">

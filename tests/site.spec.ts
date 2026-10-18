@@ -29,6 +29,9 @@ test.describe("pages", () => {
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       expect(overflow).toBeLessThanOrEqual(0);
       expect(errors).toEqual([]);
+      if (["/", "/contact", "/capabilities"].includes(p.path)) {
+        await page.screenshot({ path: `test-results/${test.info().project.name}-${p.path.replaceAll("/", "") || "home"}.png`, fullPage: true });
+      }
     });
   }
 
@@ -136,7 +139,7 @@ test.describe("quote form", () => {
     const v = {
       "Full name": "Test Buyer",
       Company: "Test Brand Ltd",
-      "Business email": "buyer@testbrand.com",
+      "Email address": "buyer@testbrand.com",
       Country: "United Kingdom",
       "Product requirements": "Cotton tees, 2 colourways",
       Quantity: "1,000 pcs",
@@ -144,25 +147,39 @@ test.describe("quote form", () => {
     };
     for (const [label, value] of Object.entries(v)) await page.getByLabel(label, { exact: false }).first().fill(value);
     await page.getByLabel("Product category").selectOption("Outerwear");
-    await page.getByLabel("Timeline").selectOption("Within 3–6 months");
+    await page.getByLabel("Timeline").selectOption("Within 3 to 6 months");
   }
 
   test("shows validation errors and focuses the first invalid field", async ({ page }) => {
     await page.goto("/contact");
     await page.getByRole("button", { name: "Send request" }).click();
     await expect(page.getByText("Please enter your full name.")).toBeVisible();
-    await expect(page.getByText("Please enter your business email.")).toBeVisible();
-    await expect(page.getByText("Please choose a timeline.")).toBeVisible();
-    await expect(page.getByText("Please choose a product category.")).toBeVisible();
+    await expect(page.getByText("Please enter your email address.")).toBeVisible();
+    await expect(page.locator("#timeline")).not.toHaveAttribute("required", "");
+    await expect(page.locator("#category")).not.toHaveAttribute("required", "");
     await expect(page.locator("#name")).toBeFocused();
     await expect(page.locator("#name")).toHaveAttribute("aria-invalid", "true");
   });
 
-  test("rejects free-mail addresses", async ({ page }) => {
+  test("accepts an idea with a personal email and no production details", async ({ page }) => {
+    let submitted = "";
+    await page.route("**/api/quote", async (route) => {
+      submitted = route.request().postData() ?? "";
+      await route.fulfill({ status: 200, json: { ok: true } });
+    });
     await page.goto("/contact");
-    await fill(page, { "Business email": "someone@gmail.com" });
+    await page.getByLabel("Full name").fill("New Founder");
+    await page.getByLabel("Email address").fill("founder@gmail.com");
+    await page.getByLabel("Message").fill("I have an idea for a clothing brand and need guidance.");
     await page.getByRole("button", { name: "Send request" }).click();
-    await expect(page.getByText("Please use your business email address.")).toBeVisible();
+    await expect(page.getByText("Thank you. Your request was sent.")).toBeVisible();
+    expect(submitted).toContain("founder@gmail.com");
+  });
+
+  test("API accepts name and personal email without optional fields", async ({ request }) => {
+    const res = await request.post("/api/quote", { multipart: { name: "New Founder", email: "founder@gmail.com" } });
+    expect([200, 503, 502, 429]).toContain(res.status());
+    expect((await res.json()).code).not.toBe("invalid");
   });
 
   test("rejects oversized attachments", async ({ page }) => {
@@ -181,7 +198,7 @@ test.describe("quote form", () => {
     await fill(page);
     await page.getByRole("button", { name: "Send request" }).click();
     await expect(page.locator("form").getByRole("alert")).toContainText("aren’t connected yet");
-    await expect(page.getByText("Thank you — your request was sent.")).toHaveCount(0);
+    await expect(page.getByText("Thank you. Your request was sent.")).toHaveCount(0);
   });
 
   test("shows success only when the server confirms delivery", async ({ page }) => {
@@ -189,7 +206,7 @@ test.describe("quote form", () => {
     await page.goto("/contact");
     await fill(page);
     await page.getByRole("button", { name: "Send request" }).click();
-    await expect(page.getByText("Thank you — your request was sent.")).toBeVisible();
+    await expect(page.getByText("Thank you. Your request was sent.")).toBeVisible();
   });
 
   test("category quote links preselect the category", async ({ page }) => {

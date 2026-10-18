@@ -18,7 +18,7 @@ const values = [
   { title: "Precision", body: "Specifications are written down, checked and followed. Details are where garments succeed or fail." },
   { title: "Transparency", body: "Costs are itemised and terms are stated in writing. You should never have to guess what you are paying for." },
   { title: "Accountability", body: "One contact owns your order. When something needs attention, you hear about it from us first." },
-  { title: "Partnership", body: "We measure success by whether you reorder — which means getting the first order right." },
+  { title: "Partnership", body: "We measure success by whether you reorder, which means getting the first order right." },
 ];
 
 export default function AboutPage() {
@@ -27,7 +27,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Noxel Apparel"
         title="Built around the buyer."
-        intro="Noxel Apparel exists to make apparel sourcing and production dependable for brands and bulk buyers — clear specifications, honest communication and one accountable partner."
+        intro="Noxel Apparel exists to make apparel sourcing and production dependable for brands and bulk buyers through clear specifications, honest communication and one accountable partner."
         image={{ src: "/images/machine-detail.jpg", alt: "Detail of an industrial sewing machine presser foot and needle plate" }}
       />
 
@@ -48,15 +48,15 @@ export default function AboutPage() {
                 <Reveal>
                   <h3 className="text-title">What we do</h3>
                   <p className="mt-3 text-slate">
-                    We help brands and bulk buyers source and produce apparel to their specification — from clarifying
+                    We help brands and bulk buyers source and produce apparel to their specification, from clarifying
                     requirements and quoting, through sampling where applicable, to production coordination, quality
-                    checks and delivery coordination.
+                    checks and delivery coordination. We also act as personal consultants for new founders, helping you work through the decisions involved in starting your brand.
                   </p>
                 </Reveal>
                 <Reveal delay={100}>
                   <h3 className="text-title">Who we work with</h3>
                   <p className="mt-3 text-slate">
-                    Apparel brands developing or scaling their ranges, and organisations buying apparel in volume who
+                    First time founders with an idea, apparel brands developing or scaling their ranges, and organisations buying apparel in volume who
                     need consistency, clear terms and a partner who answers the phone.
                   </p>
                 </Reveal>
@@ -73,7 +73,7 @@ export default function AboutPage() {
             eyebrow="Working approach"
             id="approach-title"
             title="How we behave on every order."
-            intro="These principles shape how we quote, communicate and coordinate — regardless of order size."
+            intro="These principles shape how we quote, communicate and coordinate, regardless of order size."
           />
           <ul className="mt-16 grid gap-px bg-line sm:grid-cols-2 lg:mt-20">
             {principles.map((p, i) => (
@@ -94,7 +94,7 @@ export default function AboutPage() {
               <Reveal>
                 <Eyebrow index="03">Values</Eyebrow>
                 <h2 id="values-title" className="text-headline mt-6">
-                  Precision built — in how we work, not only what we make.
+                  Precision in what we make and how we work.
                 </h2>
               </Reveal>
               <Reveal delay={120} className="mt-12">

@@ -44,7 +44,7 @@ function Hero() {
               </span>
             </h1>
             <p className="text-lede intro-fade mt-8 max-w-xl text-slate lg:mt-10" style={{ ["--d" as string]: "380ms" }}>
-              Noxel Apparel works with brands and bulk buyers to source and produce apparel to their specification —
+              Noxel Apparel works with brands and bulk buyers to source and produce apparel to their specification,
               with one accountable point of contact and clear communication from first inquiry onward.
             </p>
             <div className="intro-fade mt-10 flex flex-col gap-3 xs:flex-row" style={{ ["--d" as string]: "480ms" }}>
@@ -103,8 +103,8 @@ function Introduction() {
           <div className="lg:col-span-9">
             <Reveal>
               <h2 id="intro-title" className="font-display text-[clamp(1.75rem,1.1rem+2.6vw,3.4rem)] font-normal leading-[1.08] tracking-[-0.01em]">
-                A sourcing and manufacturing partner for apparel brands and bulk buyers —{" "}
-                <span className="text-slate">not a retail label.</span> Our job is to turn your requirements into
+                A sourcing and manufacturing partner for apparel brands and bulk buyers.{" "}
+                <span className="text-slate">We work behind your label.</span> Our job is to turn your requirements into
                 production you can rely on, order after order.
               </h2>
             </Reveal>
@@ -119,7 +119,7 @@ function Introduction() {
               <Reveal delay={100}>
                 <h3 className="text-title">For bulk buyers</h3>
                 <p className="mt-3 text-slate">
-                  Clear quotations, agreed specifications and coordinated delivery — so volume orders arrive as
+                  Clear quotations, agreed specifications and coordinated delivery, so volume orders arrive as
                   approved, with fewer surprises along the way.
                 </p>
               </Reveal>
@@ -134,7 +134,7 @@ function Introduction() {
         </div>
       </Container>
 
-      {/* Editorial image pair — visual transition into capabilities */}
+      {/* Editorial image pair, visual transition into capabilities */}
       <Container className="pb-24 lg:pb-36">
         <div className="grid gap-4 sm:grid-cols-12 sm:gap-6">
           <Reveal className="sm:col-span-7">
@@ -176,9 +176,9 @@ function StartingPoints() {
     },
     {
       label: "Path two",
-      title: "You have a brief",
-      body: "Start from a reference garment, a sketch or a written idea. We work through fabric, construction and finishing with you until the specification is clear enough to quote.",
-      points: ["Reference garment, sketch or description", "Specification developed together", "Sampling where the product calls for it"],
+      title: "You have an idea",
+      body: "Thinking about starting a brand but unsure where to begin? Share your idea with us. As your manufacturers and personal consultants, we help with design mapping, custom patterns, fit and the decisions that turn your idea into a finished garment.",
+      points: ["An idea, reference photo or hand sketch", "Personal guidance from concept to production", "Sampling where the product calls for it"],
       dark: true,
     },
   ];
@@ -224,7 +224,7 @@ function StartingPoints() {
                   </ul>
                   <div className="mt-10">
                     <ButtonLink href="/contact#quote" variant={p.dark ? "amber" : "ink"}>
-                      {p.dark ? "Share your brief" : "Send your tech pack"}
+                      {p.dark ? "Share your idea" : "Send your tech pack"}
                     </ButtonLink>
                   </div>
                 </div>
@@ -246,7 +246,7 @@ function Capabilities() {
           eyebrow="Capabilities"
           id="cap-title"
           title="Five categories, built to your specification."
-          intro="From hoodies and bomber jackets to leggings, cargo pants and medical uniforms — every category runs through the same specification, sampling and quality process."
+          intro="From hoodies and bomber jackets to leggings, cargo pants and medical uniforms, every category runs through the same specification, sampling and quality process."
         />
         <div className="mt-16 lg:mt-20">
           <CategoryGrid />
@@ -270,7 +270,7 @@ function Process() {
           eyebrow="How we work"
           id="process-title"
           title="Six stages. One accountable partner."
-          intro="A straightforward workflow from first inquiry to delivery coordination — with every specification, approval and term confirmed in writing."
+          intro="A straightforward workflow from first inquiry to delivery coordination, with every specification, approval and term confirmed in writing."
         />
         <div className="mt-16 lg:mt-20">
           <ProcessList />
@@ -290,7 +290,7 @@ function QualityApproach() {
   const checkpoints = [
     {
       title: "The approved sample is the reference",
-      body: "Production is measured against what you signed off — fabric, colour, fit, trims and finish.",
+      body: "Production is measured against your approved specification: fabric, colour, fit, trims and finish.",
     },
     {
       title: "Checks happen during production",

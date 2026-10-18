@@ -7,11 +7,11 @@ export const runtime = "nodejs";
  * Quote request endpoint. Delivers via Resend's REST API.
  *
  * Responses:
- *  200 { ok: true }                          — email accepted by Resend
- *  400 { ok: false, code: "invalid", errors } — validation failed
+ *  200 { ok: true }                         , email accepted by Resend
+ *  400 { ok: false, code: "invalid", errors }, validation failed
  *  429 { ok: false, code: "rate_limited" }
- *  503 { ok: false, code: "not_configured" } — RESEND_API_KEY / QUOTE_TO_EMAIL / QUOTE_FROM_EMAIL missing
- *  502 { ok: false, code: "delivery_failed" } — Resend rejected the request
+ *  503 { ok: false, code: "not_configured" }, RESEND_API_KEY / QUOTE_TO_EMAIL / QUOTE_FROM_EMAIL missing
+ *  502 { ok: false, code: "delivery_failed" }, Resend rejected the request
  */
 
 // Best-effort per-instance rate limit (5 requests / 10 min / IP).
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, code: "invalid", errors: {} }, { status: 400 });
   }
 
-  // Honeypot: real users never fill this hidden field. Rejected explicitly — never a fake success.
+  // Honeypot: real users never fill this hidden field. Rejected explicitly, never a fake success.
   if (String(form.get("website") ?? "").trim()) {
     return NextResponse.json({ ok: false, code: "invalid", errors: {} }, { status: 400 });
   }
@@ -75,14 +75,14 @@ export async function POST(req: Request) {
   const rows: [string, string][] = [
     ["Name", fields.name],
     ["Company", fields.company],
-    ["Business email", fields.email],
+    ["Email address", fields.email],
     ["Country", fields.country],
     ["Product category", fields.category],
     ["Product requirements", fields.product],
     ["Quantity", fields.quantity],
     ["Timeline", fields.timeline],
-    ["Message", fields.message || "—"],
-    ["Attachment", upload ? `${upload.name} (${Math.round(upload.size / 1024)} KB)` : "—"],
+    ["Message", fields.message || "Not provided"],
+    ["Attachment", upload ? `${upload.name} (${Math.round(upload.size / 1024)} KB)` : "Not provided"],
   ];
 
   const html = `<h2 style="font-family:Arial,sans-serif">New quote request</h2>
@@ -90,17 +90,17 @@ export async function POST(req: Request) {
 ${rows
   .map(
     ([k, v]) =>
-      `<tr><td style="border-bottom:1px solid #eee;color:#555;vertical-align:top"><b>${k}</b></td><td style="border-bottom:1px solid #eee;white-space:pre-wrap">${esc(v)}</td></tr>`,
+      `<tr><td style="border-bottom:1px solid #eee;color:#555;vertical-align:top"><b>${k}</b></td><td style="border-bottom:1px solid #eee;white-space:pre-wrap">${esc(v || "Not provided")}</td></tr>`,
   )
   .join("")}
 </table>`;
-  const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
+  const text = rows.map(([k, v]) => `${k}: ${v || "Not provided"}`).join("\n");
 
   const payload: Record<string, unknown> = {
     from: QUOTE_FROM_EMAIL,
     to: QUOTE_TO_EMAIL.split(",").map((s) => s.trim()),
     reply_to: fields.email,
-    subject: `Quote request — ${fields.company} — ${fields.category} (${fields.country})`,
+    subject: `New inquiry: ${fields.company || fields.name}${fields.category ? ` (${fields.category})` : ""}`,
     html,
     text,
   };
